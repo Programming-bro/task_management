@@ -85,11 +85,11 @@ WSGI_APPLICATION = 'task_management.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME',defatlt=''),
-        'USER': config('DB_USER',defatlt=''),
-        'PASSWORD': config('DB_PASSWORD',defatlt=''),
-        'HOST': config('DB_HOST',defatlt=''),
-        'PORT': config('DB_PORT',defatlt='')
+        'NAME': config('DB_NAME',default=''),
+        'USER': config('DB_USER',default=''),
+        'PASSWORD': config('DB_PASSWORD',default=''),
+        'HOST': config('DB_HOST',default=''),
+        'PORT': config('DB_PORT',cast=int)
     }
 }
 
