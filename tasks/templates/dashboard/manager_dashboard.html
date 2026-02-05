@@ -2,7 +2,7 @@
 {% block title %}Manager Dashboard{% endblock title %}Manager Dashboard
 {% block tasks %}
 {% comment %} Task table {% endcomment %}
-            <div class="row flex grid  sm:text-sm grid-cols-1">
+            <div class="row grid  sm:text-sm grid-cols-1">
                 {% comment %} All tasks {% endcomment %}
                 <div class="card rounded h-auto  grid-cols-1 p-5 m-6 bg-white">
                     
@@ -12,83 +12,41 @@
                         <div>TEAM</div>
                         <div>CREATED AT</div>
                     </div>
-                    <div class="flex justify-between mt-3">
-                        <div class="flex">
+                    {% for task in tasks %}
+                    <div class="justify-between mt-3 grid grid-cols-4">
+                        <div class="grid sm:grid-cols-1 md:grid-cols-3">
+                            <div class="flex md:col-span-2">
                             <div class="w-2 h-2 bg-green-500 rounded-full mx-2 mt-2">
                             </div>
-                            <p class="text-base">Test low task</p>
+                            <p class="text-base">{{task.title}}</p>
                         </div>
-                        <div class="ps-2 me-6">
-                            <p class="text-blue-500 font-medium bg-blue-100 px-1 rounded">High</p>
-                        </div>
-                        <div class="flex -space-x-4">
-                            <div class="sm:w-6 h-6 md:w-8 md:h-8 flex items-center justify-center text-white p-1 text-sm border-2 border-white bg-blue-500 rounded-full">
-                                CA
+                            <div class="py-1 col-span-1">
+                                <a href="{% url "update_task" task.id %}"><button class="bg-green-500 text-white font-semibold py-1 px-2 rounded-sm">Edit</button></a> 
                             </div>
-                            <div class="sm:w-6 h-6 md:w-8 md:h-8 flex items-center justify-center text-white p-1 text-sm border-2 border-white bg-green-500 rounded-full">
-                                JA
-                            </div>
-                            
-                            <div class="sm:w-6 h-6 md:w-8 md:h-8 flex items-center justify-center text-white p-1 text-sm border-2 border-white bg-yellow-500 rounded-full">
-                                B
+                            <div class="py-1 col-span-1">
+                                <form action="{% url "delete_task" task.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="bg-red-500 text-white font-semibold py-1 px-2 rounded-sm">Delete</button>
+                                </form> 
                             </div>
                         </div>
-                        <div>
-                            <p class="text-gray-500">10 months ago</p>
+                        
+                        <div class="mx-auto items-center justify-center">
+                            <p class="text-blue-500 font-medium bg-blue-100 px-2 py-1 rounded w-20">{{task.details.get_priority_display}}</p>
                         </div>
-                    </div>
-                    <div class="flex justify-between mt-3">
-                        <div class="flex">
-                            <div class="w-2 h-2 bg-yellow-500 rounded-full mx-2 mt-2">
+                        <div class="flex -space-x-4 mx-auto items-center justify-center">
+                            {% for emp in task.assigned_to.all %}
+                            <div class="h-20 w-20 flex mx-auto items-center justify-center text-white p-1 text-sm border-2 border-white bg-blue-500 rounded-full">
+                                {{emp.name|slice:':1'}}
                             </div>
-                            <p class="text-base">Test task</p>
+                            {% endfor %}
                         </div>
-                        <div class="ps-9">
-                            <p class="text-gray-500 font-medium bg-gray-100 px-1 rounded">Normal</p>
-                        </div>
-                        <div class="flex -space-x-4">
-                            
-                            <div class="sm:w-6 h-6 md:w-8 md:h-8 flex items-center justify-center text-white p-1 text-sm border-2 border-white bg-red-500 rounded-full">
-                                AJ
-                            </div>
-                            <div class="sm:w-6 h-6 md:w-8 md:h-8 flex items-center justify-center text-white p-1 text-sm border-2 border-white bg-purple-500 rounded-full">
-                                EV
-                            </div>
-                            <div class="sm:w-6 h-6 md:w-8 md:h-8 flex items-center justify-center text-white p-1 text-sm border-2 border-white bg-yellow-500 rounded-full">
-                                B
-                            </div>
-                        </div>
-                        <div>
-                            <p class="text-gray-500">10 months ago</p>
+                        <div class="mx-auto items-center justify-center">
+                            <p class="text-gray-500 w-1/4">{{task.created_at|timesince}} </p>
                         </div>
                     </div>
-                    <div class="flex justify-between mt-3">
-                        <div class="flex">
-                            <div class="w-2 h-2 bg-red-500 rounded-full mx-2 mt-2">
-                            </div>
-                            <p class="text-base">Test task</p>
-                        </div>
-                        <div class="ps-12 me-10">
-                            <p class="text-red-500 font-medium bg-red-100 px-1 rounded">Low</p>
-                        </div>
-                        <div class="flex -space-x-4">
-                            <div class="sm:w-6 h-6 md:w-8 md:h-8 flex items-center justify-center text-white p-1 text-sm border-2 border-white bg-blue-500 rounded-full">
-                                CA
-                            </div>
-                            <div class="sm:w-6 h-6 md:w-8 md:h-8 flex items-center justify-center text-white p-1 text-sm border-2 border-white bg-green-500 rounded-full">
-                                JA
-                            </div>
-                            <div class="sm:w-6 h-6 md:w-8 md:h-8 flex items-center justify-center text-white p-1 text-sm border-2 border-white bg-red-500 rounded-full">
-                                AJ
-                            </div>
-                            <div class="sm:w-6 h-6 md:w-8 md:h-8 flex items-center justify-center text-white p-1 text-sm border-2 border-white bg-yellow-500 rounded-full">
-                                B
-                            </div>
-                        </div>
-                        <div>
-                            <p class="text-gray-500">10 months ago</p>
-                        </div>
-                    </div>
+                    {% endfor %}
+                    
                 </div>
             </div>
 {% endblock tasks %}

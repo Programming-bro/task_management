@@ -52,7 +52,7 @@ def populate_db():
             assigned_to=", ".join(
                 [emp.name for emp in task.assigned_to.all()]),
             priority=random.choice(['H', 'M', 'L']),
-            notes=fake.paragraph()
+            
         )
     print("Populated TaskDetails for all tasks.")
     print("Database populated successfully!")

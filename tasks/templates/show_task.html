@@ -8,9 +8,14 @@
 <body>
     <ul>
     {% for task in tasks  %}
-        <li>{{task.status}}</li>
+        <li>
+            <p>{{task.id}}</p>
+            <p>{{task.priority}}</p>
+
+        </li>
     {% endfor %}
     </ul>
-    {{task3}}
+    {% comment %} {{task3}} {% endcomment %}
+     {% comment %} <p>{{tasks_cnt.num_task}} </p> {% endcomment %}
 </body>
 </html>
