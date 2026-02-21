@@ -1,16 +1,5 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock title %}</title>
-    {% comment %} Tailwind CSS {% endcomment %}
-    <link rel="stylesheet" href="{% static "css/output.css" %}">
-</head>
-
-<body class="bg-gray-100">
+{% extends "base.html" %}
+{% block content %}
     <div class="sm:m-2 md:m-8">
         <div class="header flex justify-between">
             <div class="items-center text-xl font-semibold mx-6">
@@ -130,6 +119,4 @@
             {% endblock tasks %}
         </div>
     </div>
-</body>
-
-</html>
+{% endblock content %}

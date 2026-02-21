@@ -1,21 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+<div class="w-1/2 mx-auto">
     <ul>
     {% for task in tasks  %}
         <li>
-            <p>{{task.id}}</p>
-            <p>{{task.priority}}</p>
+            <p><b>Task id: {{task.id}}</b></p>
+            <p>Task Title {{task.title}}</p>
 
         </li>
     {% endfor %}
     </ul>
-    {% comment %} {{task3}} {% endcomment %}
-     {% comment %} <p>{{tasks_cnt.num_task}} </p> {% endcomment %}
-</body>
-</html>
+</div>
+
+{% endblock content %}
