@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="w-1/2 mx-auto">
+        <div>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="px-2 py-1 {% if message.tags == 'success' %}bg-green-400{% endif %} in ">{{message}}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <form method="POST">
+        {% csrf_token %}
+        {{task_form.as_p}}
+        <button type="submit" class="bg-blue-500 text-white rounded-md p-3 mt-4">Submit</button>
+    </form>
+    </div>
+{% endblock content %}

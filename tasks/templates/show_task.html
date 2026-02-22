@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="w-1/2 mx-auto">
+    <ul>
+    {% for task in tasks  %}
+        <li>
+            <p><b>Task id: {{task.id}}</b></p>
+            <p>Task Title {{task.title}}</p>
+
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+
+{% endblock content %}
